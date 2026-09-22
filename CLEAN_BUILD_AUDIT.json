@@ -15,5 +15,9 @@
   "teamLab Oct 20": true,
   "all assets exist": true,
   "explicit app element binding": true,
-  "visible runtime error fallback": true
+  "visible runtime error fallback": true,
+  "static home exists before JS": true,
+  "application JS external": true,
+  "app.js exists": true,
+  "index no inline app script": true
 }
