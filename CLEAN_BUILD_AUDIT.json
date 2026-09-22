@@ -1,0 +1,17 @@
+{
+  "single clean renderer": true,
+  "no Hakone": true,
+  "no Traveler Essentials": true,
+  "no Trip Tools": true,
+  "no private wallet amounts in public": true,
+  "saved + recommended food": true,
+  "saved + recommended shopping": true,
+  "interactive local guide": true,
+  "interactive safety": true,
+  "wallet import": true,
+  "wallet cash zero by default": true,
+  "DisneySea Oct 18": true,
+  "Kamakura Oct 19": true,
+  "teamLab Oct 20": true,
+  "all assets exist": true
+}
