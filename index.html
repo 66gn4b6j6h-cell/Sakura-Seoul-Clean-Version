@@ -13,6 +13,7 @@ const D={"food": [{"id": "1", "country": "Japan", "city": "Osaka", "zone": "Near
 const A={jpHero:"japan-kamakura-hero-v24.png",krHero:"korea-seoul-hero-v24.png",
 jp:{Today:"japan-today-v24.png",Weather:"japan-weather-v24.png",Cities:"japan-cities-v24.png",Food:"japan-food-v24.png",Shopping:"japan-shopping-v24.png",Safety:"japan-safety-v24.png",Wallet:"japan-wallet-v24.png",Info:"japan-info-v24.png"},
 kr:{Today:"korea-today-v24.png",Weather:"korea-weather-v24.png",Cities:"korea-cities-v24.png",Food:"korea-food-v24.png",Shopping:"korea-shopping-v24.png",Safety:"korea-safety-v24.png",Wallet:"korea-wallet-v24.png",Info:"korea-info-v24.png"}};
+const app=document.getElementById("app");
 const $=s=>document.querySelector(s), esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 function go(r){location.hash="#"+r} function route(){return decodeURIComponent((location.hash||"#home").slice(1))}
 function qs(r=route()){let [b,q=""]=r.split("?");return [b,Object.fromEntries(new URLSearchParams(q))]}
@@ -77,5 +78,7 @@ function renderCities(c){let cities=c==="Japan"?["Osaka","Kyoto","Uji","Nara","F
 function render(){
 let [b,q]=qs();
 if(b==="home")renderHome();else if(b==="country")renderCountry(q.c);else if(b==="journey")renderJourney();else if(b==="today")renderToday(q.c);else if(b==="food")renderFood(q);else if(b==="shopping")renderShopping(q);else if(b==="guide")renderGuide(q.c,q.s);else if(b==="wallet")renderWallet(q);else if(b==="bookings")renderBookings();else if(b==="weather")renderWeather(q.c);else if(b==="cities")renderCities(q.c);else if(["packing","luggage","documents","connectivity","ready"].includes(b))renderSimple(b);else renderHome()}
-window.addEventListener("hashchange",render);render();
+window.addEventListener("hashchange",()=>{try{render()}catch(e){showFatal(e)}});
+function showFatal(e){console.error(e);app.innerHTML=`<div class="top"><div class="brand">The Sakura & Seoul Journal</div></div><h1 class="title">App loading error</h1><div class="card"><p class="sub">${esc(e&&e.message?e.message:String(e))}</p><button class="btn" onclick="location.hash='#home';location.reload()">Reload Home</button></div>`}
+try{render()}catch(e){showFatal(e)}
 </script></body></html>
